@@ -224,6 +224,12 @@ public class DesktopInput extends InputHandler{
         //draw schematic plans
         for(int i = 0; i < size; i++){
             var plan = items[i];
+
+            if (updateOffset){
+                plan.x = plan.x + schemaXOffset;
+                plan.y = plan.y + schemaYOffset;
+            }
+
             plan.animScale = 1f;
             drawPlan(plan, plan.cachedValid = validPlace(plan.x, plan.y, plan.block, plan.rotation), schemAlpha);
         }
@@ -905,6 +911,30 @@ public class DesktopInput extends InputHandler{
         //select some units
         if(Core.input.keyRelease(Binding.select) && commandRect){
             selectUnitsRect();
+        }
+
+        if(Core.input.keyDown(Binding.schematic_offset_modifier)){
+            if(Core.input.keyTap(Binding.schematic_offset_y_up)){
+                updateOffset = true;
+                schemaYOffset = 1;
+            }
+            if(Core.input.keyTap(Binding.schematic_offset_y_down)){
+                updateOffset = true;
+                schemaYOffset = -1;
+            }
+            if(Core.input.keyTap(Binding.schematic_offset_x_right)){
+                updateOffset = true;
+                schemaXOffset = 1;
+            }
+            if(Core.input.keyTap(Binding.schematic_offset_x_left)){
+                updateOffset = true;
+                schemaXOffset = -1;
+            }
+        }
+
+        // only "submit" / flush schematic something doesn't have keyboard focus (like chat/console)
+        if(Core.input.keyDown(Binding.schematic_submit_modifier) && Core.input.keyTap(Binding.schematic_submit) && scene.getKeyboardFocus() == null && selectPlans.any()){
+            flushPlans(selectPlans, isFreezeQueueing, Core.input.keyDown(Binding.force_place_modifier), isFreezeQueueing);
         }
 
         if(Core.input.keyTap(Binding.select) && !Core.scene.hasMouse()){
