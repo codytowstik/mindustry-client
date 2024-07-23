@@ -71,6 +71,11 @@ public class DesktopInput extends InputHandler{
     /** Previously selected tile. */
     public Tile prevSelected;
     private long lastShiftZ;
+    /** Cardinality to shift schema from plan's current coordinates */
+    private int schemaYOffset = 0;
+    private int schemaXOffset = 0;
+    /** If offset needs to be calculated */
+    private boolean updateOffset = false;
 
     @Override
     public void buildUI(Group group){
@@ -233,6 +238,10 @@ public class DesktopInput extends InputHandler{
             plan.animScale = 1f;
             drawPlan(plan, plan.cachedValid = validPlace(plan.x, plan.y, plan.block, plan.rotation), schemAlpha);
         }
+
+        schemaXOffset = 0;
+        schemaYOffset = 0;
+        updateOffset = false;
 
         //draw schematic plans - over version, cached results
         for(int i = 0; i < size; i++){
