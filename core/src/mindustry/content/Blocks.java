@@ -3797,6 +3797,7 @@ public class Blocks{
                     explodeRange = 20f;
                 }},
                 Items.surgeAlloy, new FlakBulletType(4.5f, 13){{
+                    // lightningDamage is unset, so bullet damage is used
                     ammoMultiplier = 5f;
                     splashDamage = 50f * 1.5f;
                     splashDamageRadius = 38f;

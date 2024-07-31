@@ -976,7 +976,7 @@ public class DesktopInput extends InputHandler{
                 commandRectX = input.mouseWorldX();
                 commandRectY = input.mouseWorldY();
             }else if(!checkConfigTap() && selected != null){
-                //only begin shooting if there's no cursor event
+                //only begin shooting if there's no cursor event // ccody stops shooting
                 if(!tryTapPlayer(Core.input.mouseWorld().x, Core.input.mouseWorld().y) && !tileTapped(selected.build) && !player.unit().activelyBuilding() && !droppingItem
                     && !(tryStopMine(selected) || (!settings.getBool("doubletapmine") || selected == prevSelected && Time.timeSinceMillis(selectMillis) < 500) && tryBeginMine(selected)) && !Core.scene.hasKeyboard()){
                     player.shooting = shouldShoot;

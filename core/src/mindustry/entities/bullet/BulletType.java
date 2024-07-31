@@ -447,6 +447,7 @@ public class BulletType extends Content implements Cloneable{
         createSplashDamage(b, x, y);
 
         for(int i = 0; i < lightning; i++){
+            // lightningDamage is unset, so it just uses the bullet damage
             Lightning.create(b, lightningColor, lightningDamage < 0 ? damage : lightningDamage, b.x, b.y, b.rotation() + Mathf.range(lightningCone/2) + lightningAngle, lightningLength + Mathf.random(lightningLengthRand));
         }
     }

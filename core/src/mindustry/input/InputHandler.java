@@ -1744,7 +1744,7 @@ public abstract class InputHandler implements InputProcessor, GestureListener{
             }
         }
 
-        //call tapped event
+        //call tapped event // ccody building tapped
         if(!consumed && build.interactable(player.team())){
             build.tapped();
         }

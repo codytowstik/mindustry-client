@@ -51,6 +51,8 @@ jobs:
 
           export PATH=./tools:$PATH
           ./gradlew test desktop:dist -PupdateUrl=${{ github.repository }} -PclientVersion="${GITHUB_REF/refs\/tags\//}, ${{ steps.time.outputs.formattedTime }}" --parallel # Testing and building in parallel saves a few dozen seconds.
+          
+          ./gradlew desktop:dist -PclientVersion="cody_version"
 
       - name: Upload Test Results To Pages
         if: ${{ !cancelled() }}

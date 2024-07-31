@@ -549,6 +549,7 @@ public class NetClient implements ApplicationListener{
     @Remote(variants = Variant.both, unreliable = true)
     public static void setCameraPosition(float x, float y){ // FINISHME: Add some sort of toggle
         if(Core.camera != null){
+            // ccody set camera position... this is a remote function, does it sync with server
             Core.camera.position.set(x, y);
         }
     }
